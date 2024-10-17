@@ -1,0 +1,276 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading dan Link */
+h1, h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Gaya Umum untuk Halaman Selamat Datang */
+.wellcome {
+    text-align: center; /* Teks di tengah */
+    margin: 20px 0; /* Ruang di atas dan bawah */
+}
+
+.wellcome h1 {
+    font-size: 2.5em; /* Ukuran font untuk judul */
+}
+
+.wellcome a {
+    margin: 10px; /* Ruang di sekitar tautan */
+    padding: 10px 20px; /* Ruang dalam */
+    background-color: #007BFF; /* Warna latar belakang biru */
+    color: white; /* Warna teks putih */
+    text-decoration: none; /* Menghilangkan garis bawah */
+    border-radius: 4px; /* Sudut membulat */
+}
+
+.wellcome a:hover {
+    background-color: #0056b3; /* Mengubah warna saat hover */
+}
+
+/* Gaya untuk Content Kajian */
+.content-kajian {
+    width: 80%; /* Lebar kontainer */
+    margin: 20px auto; /* Pusatkan kontainer */
+    padding: 20px; /* Ruang dalam */
+    background-color: white; /* Warna latar belakang putih */
+    border-radius: 8px; /* Sudut membulat */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+}
+
+.content-kajian h2 {
+    text-align: center; /* Teks di tengah */
+    margin-bottom: 20px; /* Ruang di bawah judul */
+}
+
+/* Tabel Gaya */
+table {
+    width: 100%; /* Tabel memenuhi lebar kontainer */
+    border-collapse: collapse; /* Menggabungkan batas */
+    margin-top: 20px; /* Ruang di atas tabel */
+}
+
+th, td {
+    border: 1px solid #ddd; /* Batas tabel */
+    padding: 12px; /* Ruang dalam */
+    text-align: left; /* Teks rata kiri */
+}
+
+th {
+    background-color: #f2f2f2; /* Warna latar belakang untuk header */
+    font-weight: bold; /* Teks tebal untuk header */
+}
+
+td img {
+    border-radius: 4px; /* Sudut membulat untuk gambar */
+    max-width: 100px; /* Maksimal lebar gambar */
+    height: auto; /* Tinggi otomatis untuk menjaga rasio aspek */
+}
+
+/* Gaya Link dalam Tabel */
+a {
+    color: #007BFF; /* Warna tautan biru */
+    text-decoration: none; /* Menghilangkan garis bawah */
+}
+
+a:hover {
+    text-decoration: underline; /* Menambahkan garis bawah saat hover */
+}
+/* Gaya untuk Halaman Edit Kajian */
+.container {
+    width: 50%; /* Lebar kontainer */
+    margin: 20px auto; /* Pusatkan kontainer */
+    padding: 20px; /* Ruang dalam */
+    background-color: white; /* Warna latar belakang putih */
+    border-radius: 8px; /* Sudut membulat */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+}
+
+.container-judul {
+    text-align: center; /* Teks di tengah */
+    margin-bottom: 20px; /* Ruang di bawah judul */
+}
+
+.container-form {
+    display: flex; /* Menggunakan flexbox untuk tata letak form */
+    flex-direction: column; /* Kolom */
+}
+
+label {
+    margin-top: 10px; /* Ruang di atas label */
+}
+
+input[type="text"],
+input[type="date"],
+input[type="file"] {
+    padding: 10px; /* Ruang dalam */
+    border: 1px solid #ccc; /* Batas */
+    border-radius: 4px; /* Sudut membulat */
+    margin-top: 5px; /* Ruang di atas input */
+}
+
+input[type="submit"] {
+    margin-top: 20px; /* Ruang di atas tombol */
+    padding: 10px; /* Ruang dalam */
+    background-color: #007BFF; /* Warna latar belakang biru */
+    color: white; /* Warna teks putih */
+    border: none; /* Tidak ada batas */
+    border-radius: 4px; /* Sudut membulat */
+    cursor: pointer; /* Tanda kursor pointer */
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Mengubah warna saat hover */
+}
+
+/* Container Umum */
+.box-user, .content-dashboard, .content-tambah {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.box-user-judul, .content-dashboard-judul, .content-tambah-judul {
+    margin-bottom: 20px;
+}
+
+.box-user-form, .content-dahsboard-table, .content-tambah-form, .container-form-login {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Form dan Input */
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+input[type="text"], input[type="number"], input[type="date"], input[type="file"], textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 100px;
+}
+
+input[type="submit"] {
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Tampilan Welcome Page */
+.wellcome {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.wellcome a {
+    display: inline-block;
+    padding: 10px 20px;
+    margin: 5px;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+}
+
+.wellcome a:hover {
+    background-color: #0056b3;
+}
+
+/* Tampilan Login */
+.container-login {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.container-judul-login {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.submit-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.submit-login a {
+    color: #007BFF;
+}
+
+.submit-login a:hover {
+    text-decoration: underline;
+}
+footer {
+    background: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
