@@ -28,67 +28,98 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Gaya Umum untuk Halaman Selamat Datang */
+/* Wellcome section */
 .wellcome {
-    text-align: center; /* Teks di tengah */
-    margin: 20px 0; /* Ruang di atas dan bawah */
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #18a357;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .wellcome h1 {
-    font-size: 2.5em; /* Ukuran font untuk judul */
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.wellcome p {
+    font-size: 20px;
+    margin-bottom: 30px;
 }
 
 .wellcome a {
-    margin: 10px; /* Ruang di sekitar tautan */
-    padding: 10px 20px; /* Ruang dalam */
-    background-color: #007BFF; /* Warna latar belakang biru */
-    color: white; /* Warna teks putih */
-    text-decoration: none; /* Menghilangkan garis bawah */
-    border-radius: 4px; /* Sudut membulat */
+    text-decoration: none;
+    background-color: #1d6fa5;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 25px;
+    font-size: 18px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
 }
 
 .wellcome a:hover {
-    background-color: #0056b3; /* Mengubah warna saat hover */
+    background-color: #154b75;
 }
 
-/* Gaya untuk Content Kajian */
+/* Content Kajian */
 .content-kajian {
-    width: 80%; /* Lebar kontainer */
-    margin: 20px auto; /* Pusatkan kontainer */
-    padding: 20px; /* Ruang dalam */
-    background-color: white; /* Warna latar belakang putih */
-    border-radius: 8px; /* Sudut membulat */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+    padding: 30px;
+    margin: 40px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 1200px;
 }
 
 .content-kajian h2 {
-    text-align: center; /* Teks di tengah */
-    margin-bottom: 20px; /* Ruang di bawah judul */
+    margin-bottom: 25px;
+    font-size: 32px;
+    color: #333;
+    border-bottom: 2px solid #3c8dbc;
+    padding-bottom: 10px;
 }
 
-/* Tabel Gaya */
+/* Tabel Kajian */
 table {
-    width: 100%; /* Tabel memenuhi lebar kontainer */
-    border-collapse: collapse; /* Menggabungkan batas */
-    margin-top: 20px; /* Ruang di atas tabel */
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: left;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
 }
 
 th, td {
-    border: 1px solid #ddd; /* Batas tabel */
-    padding: 12px; /* Ruang dalam */
-    text-align: left; /* Teks rata kiri */
+    padding: 15px;
 }
 
 th {
-    background-color: #f2f2f2; /* Warna latar belakang untuk header */
-    font-weight: bold; /* Teks tebal untuk header */
+    background-color: #3c8dbc;
+    color: black;
+    font-size: 18px;
+}
+
+td {
+    font-size: 16px;
 }
 
 td img {
-    border-radius: 4px; /* Sudut membulat untuk gambar */
-    max-width: 100px; /* Maksimal lebar gambar */
-    height: auto; /* Tinggi otomatis untuk menjaga rasio aspek */
+    border-radius: 8px;
+    max-width: 100px;
 }
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #eaeaea;
+}
+
 
 /* Gaya Link dalam Tabel */
 a {
@@ -216,24 +247,6 @@ th {
     background-color: #f2f2f2;
 }
 
-/* Tampilan Welcome Page */
-.wellcome {
-    text-align: center;
-    margin-top: 50px;
-}
-
-.wellcome a {
-    display: inline-block;
-    padding: 10px 20px;
-    margin: 5px;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 5px;
-}
-
-.wellcome a:hover {
-    background-color: #0056b3;
-}
 
 /* Tampilan Login */
 .container-login {

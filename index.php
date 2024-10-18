@@ -16,6 +16,7 @@ $data_kajian = ambil_semua_kajian_dengan_user();
 <body>
     <div class="wellcome">
         <h1>Selamat Datang di Aplikasi Kajian</h1>
+        <p>Yuk Sharing Kajian Kalian dengan Daftar dan Login Terlebih Dahulu</p>
         <a href="login.php">Login</a> | <a href="user.php">Daftar Pengguna</a>
     </div>
     
