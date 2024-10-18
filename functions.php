@@ -3,10 +3,11 @@ require "config/config.php";
 
 function cek_nomor_wa($nomor_wa) {
     global $conn;
-    $stmt = $conn->prepare("SELECT nomor_wa FROM user WHERE nomor_wa = ?");
-    $stmt->bind_param("s", $nomor_wa);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql_cek_nomor_wa = $conn->prepare("SELECT nomor_wa FROM user WHERE nomor_wa = ?");
+    $sql_cek_nomor_wa->bind_param("s", $nomor_wa);
+    $sql_cek_nomor_wa->execute();
+    $result = $sql_cek_nomor_wa->get_result();
+
     return $result->num_rows > 0;
 }
 
@@ -17,10 +18,10 @@ function tambah_user($nama_user, $nomor_wa, $daerah) {
         return "Nomor WhatsApp sudah terdaftar.";
     }
 
-    $stmt = $conn->prepare("INSERT INTO user (nama_user, nomor_wa, daerah) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $nama_user, $nomor_wa, $daerah);
+    $sql_tambah_user = $conn->prepare("INSERT INTO user (nama_user, nomor_wa, daerah) VALUES (?, ?, ?)");
+    $sql_tambah_user->bind_param("sss", $nama_user, $nomor_wa, $daerah);
 
-    if ($stmt->execute()) {
+    if ($sql_tambah_user->execute()) {
         return TRUE;
     } else {
         return "Terjadi kesalahan saat menambah pengguna.";
@@ -30,10 +31,10 @@ function tambah_user($nama_user, $nomor_wa, $daerah) {
 function login_user($nama_user, $nomor_wa) {
     global $conn;
 
-    $stmt = $conn->prepare("SELECT * FROM user WHERE nama_user = ? AND nomor_wa = ?");
-    $stmt->bind_param("ss", $nama_user, $nomor_wa);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql_login_user = $conn->prepare("SELECT * FROM user WHERE nama_user = ? AND nomor_wa = ?");
+    $sql_login_user->bind_param("ss", $nama_user, $nomor_wa);
+    $sql_login_user->execute();
+    $result = $sql_login_user->get_result();
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
@@ -75,7 +76,7 @@ function upload_dokumentasi_kajian() {
 
 function ambil_semua_kajian_dengan_user() {
     global $conn;
-    $stmt = $conn->prepare("
+    $sql_ambil_semua_kajian_dengan_user = $conn->prepare("
         SELECT 
             kajian.pengisi, 
             kajian.tema, 
@@ -89,54 +90,54 @@ function ambil_semua_kajian_dengan_user() {
         JOIN 
             user ON kajian.user_id = user.id_user
     ");
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql_ambil_semua_kajian_dengan_user->execute();
+    $result = $sql_ambil_semua_kajian_dengan_user->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function tambah_kajian($pengisi, $tema, $tempat, $tanggal_kajian, $foto, $deskripsi, $user_id) {
     global $conn;
 
-    $stmt = $conn->prepare("INSERT INTO kajian (pengisi, tema, tempat, tanggal_kajian, foto, deskripsi, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssssi", $pengisi, $tema, $tempat, $tanggal_kajian, $foto, $deskripsi, $user_id);
+    $sql_tambah_kajian = $conn->prepare("INSERT INTO kajian (pengisi, tema, tempat, tanggal_kajian, foto, deskripsi, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $sql_tambah_kajian->bind_param("ssssssi", $pengisi, $tema, $tempat, $tanggal_kajian, $foto, $deskripsi, $user_id);
 
-    return $stmt->execute();
+    return $sql_tambah_kajian->execute();
 }
 
 
 function update_kajian($get_id, $get_pengisi, $get_tema, $get_tempat, $get_tanggal_kajian, $get_foto, $get_user_id) {
     global $conn;
 
-    $stmt = $conn->prepare("UPDATE kajian SET pengisi = ?, tema = ?, tempat = ?, tanggal_kajian = ?, foto = ?, user_id = ? WHERE id_kajian = ?");
-    $stmt->bind_param("ssssssi", $get_pengisi, $get_tema, $get_tempat, $get_tanggal_kajian, $get_foto, $get_user_id, $get_id);
+    $sql_update_kajian = $conn->prepare("UPDATE kajian SET pengisi = ?, tema = ?, tempat = ?, tanggal_kajian = ?, foto = ?, user_id = ? WHERE id_kajian = ?");
+    $sql_update_kajian->bind_param("ssssssi", $get_pengisi, $get_tema, $get_tempat, $get_tanggal_kajian, $get_foto, $get_user_id, $get_id);
 
-    return $stmt->execute();
+    return $sql_update_kajian->execute();
 }
 
 function ambil_kajian($get_id) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM kajian WHERE id_kajian = ?");
-    $stmt->bind_param("i", $get_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql_ambil_kajian = $conn->prepare("SELECT * FROM kajian WHERE id_kajian = ?");
+    $sql_ambil_kajian->bind_param("i", $get_id);
+    $sql_ambil_kajian->execute();
+    $result = $sql_ambil_kajian->get_result();
     return $result->fetch_assoc();
 }
 
 function ambil_kajian_user($user_id) {
     global $conn;
-    $stmt = $conn->prepare("SELECT * FROM kajian WHERE user_id = ?");
-    $stmt->bind_param("i", $user_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
+    $sql_ambil_kajian_user = $conn->prepare("SELECT * FROM kajian WHERE user_id = ?");
+    $sql_ambil_kajian_user->bind_param("i", $user_id);
+    $sql_ambil_kajian_user->execute();
+    $result = $sql_ambil_kajian_user->get_result();
     return $result->fetch_all(MYSQLI_ASSOC);
 }
 
 function delete_kajian($get_id) {
     global $conn;
 
-    $stmt = $conn->prepare("DELETE FROM kajian WHERE id_kajian = ?");
-    $stmt->bind_param("i", $get_id);
+    $sql_delete_kajian = $conn->prepare("DELETE FROM kajian WHERE id_kajian = ?");
+    $sql_delete_kajian->bind_param("i", $get_id);
     
-    return $stmt->execute();
+    return $sql_delete_kajian->execute();
 }
 ?>
