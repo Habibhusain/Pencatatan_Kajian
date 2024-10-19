@@ -1,10 +1,12 @@
 <?php
 session_start();
-require "config/config.php";
 require "functions.php";
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['user_id'])) {
-    echo "<script>alert('Login Terlebih Dahulu'); window.location='login.php';</script>";
+    echo "<script>
+    alert('Login Terlebih Dahulu'); 
+    window.location='login.php';
+    </script>";
     exit();
 }
 

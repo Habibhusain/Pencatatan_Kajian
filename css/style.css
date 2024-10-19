@@ -190,6 +190,24 @@ input[type="submit"]:hover {
 .box-user-judul, .content-dashboard-judul, .content-tambah-judul {
     margin-bottom: 20px;
 }
+.content-dashboard-judul a{
+    padding: 10px 20px ;
+    background-color: #0056b3;
+    border-radius: 10px;
+    color: white;
+}
+.content-dahsboard-table table tr td a{
+    padding: 4px 8px ;
+    background-color: #06b300;
+    border-radius: 10px;
+    color: white;
+}
+.content-dahsboard-table table tr td a:last-child{
+    padding: 3px 5px ;
+    background-color: #b31500;
+    border-radius: 10px;
+    color: white;
+}
 
 .box-user-form, .content-dahsboard-table, .content-tambah-form, .container-form-login {
     display: flex;

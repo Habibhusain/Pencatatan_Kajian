@@ -4,17 +4,22 @@ require "functions.php";
 
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['user_id'])) {
-    echo "<script>alert('Login Terlebih Dahulu'); window.location='login.php';</script>";
+    echo "<script>
+    alert('Login Terlebih Dahulu'); 
+    window.location='login.php';
+    </script>";
     exit();
 }
 
-// Ambil data kajian berdasarkan ID
-if (isset($_GET['id'])) {
-    $id_kajian = $_GET['id'];
+if (isset($_GET['id_kajian'])) {
+    $id_kajian = $_GET['id_kajian'];
     $kajian = ambil_kajian($id_kajian);
 
     if (!$kajian) {
-        echo "<script>alert('Kajian tidak ditemukan!'); window.location='dashboard.php';</script>";
+        echo "<script>
+        alert('Kajian tidak ditemukan!'); 
+        window.location='dashboard.php';
+        </script>";
         exit();
     }
 } else {
@@ -29,23 +34,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $tempat = $_POST['tempat'];
     $tanggal_kajian = $_POST['tanggal_kajian'];
     $user_id = $_SESSION['user_id'];
-    
-    // Gunakan foto lama jika tidak ada foto baru yang diupload
-    $foto = $kajian['foto']; 
+    $foto = upload_dokumentasi_kajian();
 
-    // Cek apakah ada foto baru yang diupload
-    if ($_FILES['foto']['error'] != UPLOAD_ERR_NO_FILE) {
-        $upload_foto = upload_dokumentasi_kajian();
-        if ($upload_foto) {
-            $foto = $upload_foto; // Ganti foto lama dengan yang baru jika ada
-        }
-    }
 
     // Perbarui kajian
     if (update_kajian($id_kajian, $pengisi, $tema, $tempat, $tanggal_kajian, $foto, $user_id)) {
-        echo "<script>alert('Kajian berhasil diperbarui!'); window.location='dashboard.php';</script>";
+        echo "<script>
+        alert('Kajian berhasil diperbarui!'); 
+        window.location='dashboard.php';
+        </script>";
     } else {
-        echo "<script>alert('Terjadi kesalahan saat memperbarui kajian.');</script>";
+        echo "<script>
+        alert('Terjadi kesalahan saat memperbarui kajian.');
+        window.location='dashboard.php';
+        </script>";
     }
 }
 ?>

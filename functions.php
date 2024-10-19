@@ -1,27 +1,29 @@
 <?php
 require "config/config.php";
 
+function connect_db(){
+    $db = new mysqli(HOSTNAME, USERNAME, PASSWORD, DATABASE);
+
+    return $db;
+}
+
 function cek_nomor_wa($nomor_wa) {
-    global $conn;
-    $sql_cek_nomor_wa = $conn->prepare("SELECT nomor_wa FROM user WHERE nomor_wa = ?");
-    $sql_cek_nomor_wa->bind_param("s", $nomor_wa);
-    $sql_cek_nomor_wa->execute();
-    $result = $sql_cek_nomor_wa->get_result();
+    $sql_cek_nomor_wa = "SELECT nomor_wa FROM user WHERE nomor_wa = '$nomor_wa'";
+    $result = connect_db()->query($sql_cek_nomor_wa);
 
     return $result->num_rows > 0;
 }
 
 function tambah_user($nama_user, $nomor_wa, $daerah) {
-    global $conn;
+    
 
     if (cek_nomor_wa($nomor_wa)) {
         return "Nomor WhatsApp sudah terdaftar.";
     }
 
-    $sql_tambah_user = $conn->prepare("INSERT INTO user (nama_user, nomor_wa, daerah) VALUES (?, ?, ?)");
-    $sql_tambah_user->bind_param("sss", $nama_user, $nomor_wa, $daerah);
-
-    if ($sql_tambah_user->execute()) {
+    $sql_tambah_user = "INSERT INTO user (nama_user, nomor_wa, daerah) VALUES ('$nama_user', '$nomor_wa', '$daerah')";
+    
+    if (connect_db()->query($sql_tambah_user)) {
         return TRUE;
     } else {
         return "Terjadi kesalahan saat menambah pengguna.";
@@ -29,12 +31,10 @@ function tambah_user($nama_user, $nomor_wa, $daerah) {
 }
 
 function login_user($nama_user, $nomor_wa) {
-    global $conn;
+    
 
-    $sql_login_user = $conn->prepare("SELECT * FROM user WHERE nama_user = ? AND nomor_wa = ?");
-    $sql_login_user->bind_param("ss", $nama_user, $nomor_wa);
-    $sql_login_user->execute();
-    $result = $sql_login_user->get_result();
+    $sql_login_user = "SELECT * FROM user WHERE nama_user = '$nama_user' AND nomor_wa = '$nomor_wa'";
+    $result = connect_db()->query($sql_login_user);
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
@@ -44,7 +44,6 @@ function login_user($nama_user, $nomor_wa) {
         return false;
     }
 }
-
 
 function upload_dokumentasi_kajian() {
     $ambil_ukuran_file = $_FILES['foto']['size'];
@@ -75,8 +74,8 @@ function upload_dokumentasi_kajian() {
 }
 
 function ambil_semua_kajian_dengan_user() {
-    global $conn;
-    $sql_ambil_semua_kajian_dengan_user = $conn->prepare("
+    
+    $sql_ambil_semua_kajian_dengan_user = "
         SELECT 
             kajian.pengisi, 
             kajian.tema, 
@@ -89,55 +88,61 @@ function ambil_semua_kajian_dengan_user() {
             kajian 
         JOIN 
             user ON kajian.user_id = user.id_user
-    ");
-    $sql_ambil_semua_kajian_dengan_user->execute();
-    $result = $sql_ambil_semua_kajian_dengan_user->get_result();
-    return $result->fetch_all(MYSQLI_ASSOC);
+    ";
+    $eksekusi = connect_db()->query($sql_ambil_semua_kajian_dengan_user);
+    $result = array();
+
+    while($row = $eksekusi->fetch_assoc())
+    {
+        $result[]= $row;
+    }
+    return $result;
 }
 
 function tambah_kajian($pengisi, $tema, $tempat, $tanggal_kajian, $foto, $deskripsi, $user_id) {
-    global $conn;
+    
 
-    $sql_tambah_kajian = $conn->prepare("INSERT INTO kajian (pengisi, tema, tempat, tanggal_kajian, foto, deskripsi, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
-    $sql_tambah_kajian->bind_param("ssssssi", $pengisi, $tema, $tempat, $tanggal_kajian, $foto, $deskripsi, $user_id);
-
-    return $sql_tambah_kajian->execute();
+    $sql_tambah_kajian = "INSERT INTO kajian (pengisi, tema, tempat, tanggal_kajian, foto, deskripsi, user_id) 
+                          VALUES ('$pengisi', '$tema', '$tempat', '$tanggal_kajian', '$foto', '$deskripsi', $user_id)";
+    
+    return connect_db()->query($sql_tambah_kajian);
 }
-
 
 function update_kajian($get_id, $get_pengisi, $get_tema, $get_tempat, $get_tanggal_kajian, $get_foto, $get_user_id) {
-    global $conn;
+    
 
-    $sql_update_kajian = $conn->prepare("UPDATE kajian SET pengisi = ?, tema = ?, tempat = ?, tanggal_kajian = ?, foto = ?, user_id = ? WHERE id_kajian = ?");
-    $sql_update_kajian->bind_param("ssssssi", $get_pengisi, $get_tema, $get_tempat, $get_tanggal_kajian, $get_foto, $get_user_id, $get_id);
-
-    return $sql_update_kajian->execute();
+    $sql_update_kajian = "UPDATE kajian SET pengisi = '$get_pengisi', tema = '$get_tema', tempat = '$get_tempat', 
+                        tanggal_kajian = '$get_tanggal_kajian', foto = '$get_foto', user_id = $get_user_id 
+                        WHERE id_kajian = $get_id";
+    
+    return connect_db()->query($sql_update_kajian);
 }
 
-function ambil_kajian($get_id) {
-    global $conn;
-    $sql_ambil_kajian = $conn->prepare("SELECT * FROM kajian WHERE id_kajian = ?");
-    $sql_ambil_kajian->bind_param("i", $get_id);
-    $sql_ambil_kajian->execute();
-    $result = $sql_ambil_kajian->get_result();
-    return $result->fetch_assoc();
+function ambil_kajian($id_kajian) {
+    
+    $sql_ambil_kajian = "SELECT * FROM kajian WHERE id_kajian = $id_kajian";
+    $eksekusi = connect_db()->query($sql_ambil_kajian);
+    $result = array();
+
+     return $eksekusi->fetch_assoc();
+    
 }
 
 function ambil_kajian_user($user_id) {
-    global $conn;
-    $sql_ambil_kajian_user = $conn->prepare("SELECT * FROM kajian WHERE user_id = ?");
-    $sql_ambil_kajian_user->bind_param("i", $user_id);
-    $sql_ambil_kajian_user->execute();
-    $result = $sql_ambil_kajian_user->get_result();
-    return $result->fetch_all(MYSQLI_ASSOC);
+    
+    $sql_ambil_kajian_user = "SELECT * FROM kajian WHERE user_id = $user_id";
+    $eksekusi = connect_db()->query($sql_ambil_kajian_user);
+    while($row=$eksekusi->fetch_assoc())
+    {
+            $result[]=$row;
+    }
+
+    return $result;
 }
 
 function delete_kajian($get_id) {
-    global $conn;
-
-    $sql_delete_kajian = $conn->prepare("DELETE FROM kajian WHERE id_kajian = ?");
-    $sql_delete_kajian->bind_param("i", $get_id);
     
-    return $sql_delete_kajian->execute();
+    $sql_delete_kajian = "DELETE FROM kajian WHERE id_kajian = $get_id";
+    return connect_db()->query($sql_delete_kajian);
 }
 ?>

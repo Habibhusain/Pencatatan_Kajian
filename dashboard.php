@@ -4,7 +4,10 @@ require "functions.php";
 
 // Pastikan pengguna sudah login
 if (!isset($_SESSION['user_id'])) {
-    echo "<script>alert('Login Terlebih Dahulu'); window.location='login.php';</script>";
+    echo "<script>
+    alert('Login Terlebih Dahulu');
+    window.location='login.php';
+    </script>";
     exit();
 }
 
@@ -46,8 +49,8 @@ $data_kajian = ambil_kajian_user($user_id);
             <td><?php echo date('d-m-Y', strtotime($kajian['tanggal_kajian'])); ?></td>
             <td><img src="image/<?php echo $kajian['foto']; ?>" alt="Foto Dokumentasi" width="100px" height="auto"></td>
             <td>
-                <a href="edit_kajian.php?id=<?php echo $kajian['id_kajian']; ?>">Edit</a> |
-                <a href="hapus_kajian.php?id=<?php echo $kajian['id_kajian']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus kajian ini?');">Hapus</a>
+                <a href="edit_kajian.php?id_kajian=<?php echo $kajian['id_kajian']; ?>">Edit</a> |
+                <a href="hapus_kajian.php?id_kajian=<?php echo $kajian['id_kajian']; ?>" onclick="return confirm('Apakah Anda yakin ingin menghapus kajian ini?');">Hapus</a>
             </td>
         </tr>
         <?php endforeach; ?>
