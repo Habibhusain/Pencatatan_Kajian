@@ -6,7 +6,6 @@ $password = '';
 // 1. connect 
 $db = new mysqli($hostname, $username, $password);
 
-
 // cek konek
 if ($db -> connect_error) {
     die("Gagal Terkoneksi:" . $db->connect_error);
