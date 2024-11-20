@@ -1,26 +1,23 @@
-<?php
-
-session_start();
+<?php session_start();
 require "functions.php";
 
-if($_SERVER['REQUEST_METHOD']=='POST'){
+if ($_SERVER['REQUEST_METHOD']=='POST') {
     $nama_user = $_POST['nama_user'];
     $nomor_user = $_POST['nomor_wa'];
     
     $user = login_user($nama_user, $nomor_user);
 
-    if($user)
-    {
+    if($user) {
         $_SESSION['user']= $user;
         echo "<script>
-        alert('Berhasil Login');
-        window.location = 'dashboard.php';
-        </script>";
-    }else{
+                alert('Berhasil Login');
+                window.location = 'dashboard.php';
+              </script>";
+    } else {
         echo "<script>
-        alert('Nama pengguna atau nomor WhatsApp salah.');
-        window.location = 'login.php';
-        </script>";
+                alert('Nama pengguna atau nomor WhatsApp salah.');
+                window.location = 'login.php';
+              </script>";
     }
 }
 

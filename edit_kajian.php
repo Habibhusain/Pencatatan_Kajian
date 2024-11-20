@@ -69,19 +69,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container-form">
         <form method="POST" enctype="multipart/form-data">
             <label for="pengisi">Pengisi</label>
-            <input type="text" name="pengisi" id="pengisi" value="<?php echo htmlspecialchars($kajian['pengisi']); ?>" required>
+            <input type="text" name="pengisi" id="pengisi" value="<?php echo $kajian['pengisi']; ?>" required>
 
             <label for="tema">Tema</label>
-            <input type="text" name="tema" id="tema" value="<?php echo htmlspecialchars($kajian['tema']); ?>" required>
+            <input type="text" name="tema" id="tema" value="<?php echo $kajian['tema']; ?>" required>
 
             <label for="tempat">Tempat</label>
-            <input type="text" name="tempat" id="tempat" value="<?php echo htmlspecialchars($kajian['tempat']); ?>" required>
+            <input type="text" name="tempat" id="tempat" value="<?php echo $kajian['tempat']; ?>" required>
 
             <label for="tanggal_kajian">Tanggal Kajian</label>
-            <input type="date" name="tanggal_kajian" id="tanggal_kajian" value="<?php echo htmlspecialchars($kajian['tanggal_kajian']); ?>" required>
+            <input type="date" name="tanggal_kajian" id="tanggal_kajian" value="<?php echo $kajian['tanggal_kajian']; ?>" required>
             
             <label for="foto">Dokumentasi (Foto)</label><br>
-            <img src="image/<?php echo htmlspecialchars($kajian['foto']); ?>" alt="Foto Bukti" width="100">
+            <img src="image/<?php echo $kajian['foto']; ?>" alt="Foto Bukti" width="100">
             <input type="file" name="foto" id="foto">
 
             <input type="submit" value="Simpan Perubahan">

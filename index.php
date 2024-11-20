@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start();
 require "functions.php"; 
 
 // Ambil semua kajian dengan user

@@ -10,14 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $hasil = tambah_user($nama_user, $nomor_wa, $daerah);
     if ($hasil === TRUE) {
         echo "<script>
-        alert('User berhasil ditambahkan!');
-        window.location='login.php';
-        </script>";
+                alert('User berhasil ditambahkan!');
+                window.location='login.php';
+              </script>";
     } else {
         echo "<script>
-        alert('$hasil');
-        window.location='user.php';
-        </script>";
+                alert('$hasil');
+                window.location='user.php';
+              </script>";
     }
 }
 ?>

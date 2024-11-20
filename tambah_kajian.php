@@ -21,17 +21,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $tambah_data_kajian = tambah_kajian($pengisi, $tema, $tempat, $tanggal_kajian, $foto, $deskripsi, $user_id);
 
-    if($tambah_data_kajian)
-    {
+    if ($tambah_data_kajian) {
         echo "<script>
-        alert('Data Kajian Berhasil di Tambah');
-        window.location = 'dashboard.php';
-        </script>";
-    }else{
+                alert('Data Kajian Berhasil di Tambah');
+                window.location = 'dashboard.php';
+              </script>";
+    } else {
         echo "<script>
-        alert('Data Kajian Gagal di Tambah');
-        window.location = 'tambah_kajian.php';
-        </script>";
+                alert('Data Kajian Gagal di Tambah');
+                window.location = 'tambah_kajian.php';
+              </script>";
     }
 }
 ?>

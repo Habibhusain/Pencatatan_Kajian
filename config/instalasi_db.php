@@ -1,6 +1,4 @@
 <?php
-
-
 $hostname = 'localhost';
 $username = 'root';
 $password = '';
@@ -10,8 +8,7 @@ $db = new mysqli($hostname, $username, $password);
 
 
 // cek konek
-if($db -> connect_error)
-{
+if ($db -> connect_error) {
     die("Gagal Terkoneksi:" . $db->connect_error);
 }
 
@@ -19,8 +16,7 @@ if($db -> connect_error)
 $sql_buat_db = "CREATE DATABASE kajian";
 $eksekusi_buat_db = $db->query($sql_buat_db);
 
-if($eksekusi_buat_db)
-{
+if ($eksekusi_buat_db) {
     echo 'Buat db hafalan berhasil'. '<br>';
 }
 
@@ -28,8 +24,7 @@ if($eksekusi_buat_db)
 $sql_masuk_db = "USE kajian";
 $eksekusi_masuk_db = $db->query($sql_masuk_db);
 
-if($eksekusi_masuk_db)
-{
+if ($eksekusi_masuk_db) {
     echo 'Sudah masuk ke Database' . '<br>';
 }
 
@@ -44,8 +39,7 @@ daerah VARCHAR (255) NOT NULL
 
 $eksekusi_buat_table_user = $db->query($sql_buat_table_user);
 
-if($eksekusi_buat_table_user)
-{
+if ($eksekusi_buat_table_user) {
     echo 'Tabel user Berhasil dibuat'. '<br>';
 }
 
@@ -64,8 +58,7 @@ FOREIGN KEY (user_id) REFERENCES user(id_user)
 
 $eksekusi_buat_table_kajian = $db->query($sql_buat_table_kajian);
 
-if($eksekusi_buat_table_kajian)
-{
+if ($eksekusi_buat_table_kajian) {
     echo 'Tabel kajian Berhasil dibuat' . '<br>';
 }
 
